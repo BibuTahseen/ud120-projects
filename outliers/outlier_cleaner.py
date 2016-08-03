@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+import numpy
 
 def outlierCleaner(predictions, ages, net_worths):
     """
@@ -10,11 +10,14 @@ def outlierCleaner(predictions, ages, net_worths):
         Return a list of tuples named cleaned_data where 
         each tuple is of the form (age, net_worth, error).
     """
-    
     cleaned_data = []
 
     ### your code goes here
+    error = list((net_worths - predictions)**2)
+    cleaned_data=zip(ages,net_worths,error)
+    cleaned_data=sorted(cleaned_data, key = lambda tup:tup[2])
+    cleaned_data=cleaned_data[:81]
+    print "length:", len(cleaned_data)
 
-    
     return cleaned_data
 
